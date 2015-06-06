@@ -67,7 +67,11 @@
     <div class="row" style="margin-top:50px;margin-left:20px">
         <div class="col-md-3" style="margin-top:70px">
             <h2>Selection</h2>
-            <div class="well">{{ metrics[metric] }}, {{ directions[direction] }}, {{ threshold }}</div>
+            <div class="well"><strong>Metric: </strong>{{ metrics[metric] }}<br>
+                             <strong>Direction: </strong> {{ directions[direction] }}<br> 
+                             <strong>Threshold: </strong>{{ threshold }}.0<br>
+                             <strong>Strategy: </strong>{{ strategies[strategy]}}<br>
+                             <strong>Accuracy: </strong>{{ acc }}</div>
             <h3>Metric</h3>
                 <div class="btn-group" data-toggle="buttons">
                     {% for value,text in metrics.iteritems() %}
@@ -110,6 +114,20 @@
                         {% endif %}
                     {% endfor %}
 		</div>	
+            <h3>Comparison Strategy</h3>
+	        <div class="btn-group" data-toggle="buttons">
+                    {% for value,text in strategies.iteritems() %}
+                        {% if value == strategy %}
+		        <label class="btn btn-default active">
+		            <input type="radio" name="strategy" value="{{ value }}" autocomplete="off" checked> {{ text }}
+		        </label>   
+                        {% else %}
+               		<label class="btn btn-default">
+		            <input type="radio" name="strategy" value="{{ value }}" autocomplete="off"> {{ text }}
+		         </label>
+                        {% endif %}
+                    {% endfor %}
+		</div>	
         <br><br>
         </div>
         <div class="col-md-6">
@@ -125,7 +143,8 @@
           var thresh = $('input[name=thresh]:checked').val();
           var metric = $('input[name=metric]:checked').val();
           var direction = $('input[name=direction]:checked').val(); 
-          url = "/" + direction + "/" + metric + "/" + thresh
+          var strategy = $('input[name=strategy]:checked').val(); 
+          url =  "/" + strategy + "/" + direction + "/" + metric + "/" + thresh
           window.location.replace(url)       
         });
      });
