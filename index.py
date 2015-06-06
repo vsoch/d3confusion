@@ -1,16 +1,18 @@
 from flask import Flask, render_template
+import pandas
 import os
 
 app = Flask(__name__)
 
 def get_thresholds():
-    return {"0.0":"0","1.0":"1","2.0":"2","3.0":"3","4.0":"4",
-           "5.0":"5","6.0":"6","7.0":"7","8.0":"8","9.0":"9"}
+    return [("0","0.0"),("1","1.0"),("2","2.0"),("3","3.0"),("4","4.0"),
+           ("5","5.0"),("6","6.0"),("7","7.0"),("8","8.0"),("9","9.0")]
+
 def get_metrics():
-    return {"Pearson":"pearson","Spearman":"spearman"}
+    return {"pearson":"Pearson","spearman":"Spearman"}
 
 def get_directions():
-    return {"Positive and Negative":"posneg","Positive Only":"pos"}
+    return {"posneg":"Positive and Negative","pos":"Positive Only"}
 
 def get_accuracy():
    return 99.9
