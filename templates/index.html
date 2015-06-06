@@ -150,7 +150,7 @@
        .attr('class', 'd3-tip')
        .offset([-10, 0])
        .html(function(d) {
-       return "<strong>count: </strong> "+ d.value +"<br><strong>actual:</strong><br><img src='img/" + d.actual + ".png' width=350px><br><strong>predicted:</strong><br><img src='img/" + d.predicted + ".png' width=350px>";
+       return "<strong>count: </strong> "+ d.value +"<br><strong>actual:</strong><br><img src='https://rawgithub.com/vsoch/d3confusion/master/static/img/" + d.actual + ".png' width=350px><br><strong>predicted:</strong><br><img src='https://rawgithub.com/vsoch/d3confusion/master/static/img/" + d.predicted + ".png' width=350px>";
        })
 
       d3.tsv("{{ url_for('static',filename='%s' % datafile) }}",
