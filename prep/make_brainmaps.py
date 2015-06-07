@@ -32,7 +32,7 @@ for i in range(0,len(input_maps)):
     title = "%s_%s" %(task,contrast)
     image = nibabel.load(input_map)
     Z = IT.t_to_z(image,46)
-    for thresh in range(1,10):     
+    for thresh in range(0,10):     
         print thresh
         pos = IT.threshold_pos(image,thresholds=[thresh])[thresh]
         posneg = IT.threshold_abs(image,thresholds=[thresh])[thresh]

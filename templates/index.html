@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="http://d3js.org/d3.v3.js"></script>
-    <script src="https://rawgithub.com/vsoch/d3confusion/master/static/js/tipsy.js"></script>
+    <script src="{{ url_for('static',filename='js/tipsy.js') }}"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
     <style>
  
@@ -69,8 +69,8 @@
     </style>
   </head>
   <body>
-    <div class="row" style="margin-top:230px;margin-left:20px">
-        <div class="col-md-3" style="margin-top:70px;margin-left:100px">
+    <div class="row" style="margin-top:70px;margin-left:20px">
+        <div class="col-md-3" style="margin-top:70px">
             <h2>Selection</h2>
             <div class="well"><strong>Metric: </strong>{{ metrics[metric] }}<br>
                              <strong>Direction: </strong> {{ directions[direction] }}<br> 
@@ -149,7 +149,7 @@
           var metric = $('input[name=metric]:checked').val();
           var direction = $('input[name=direction]:checked').val(); 
           var strategy = $('input[name=strategy]:checked').val(); 
-          url =  "/" + strategy + "/" + metric + "/" + direction + "/" + thresh
+          url =  "http://www.vbmis.com/bmi/project/confusion/" + strategy + "/" + metric + "/" + direction + "/" + thresh
           window.location.replace(url)       
         });
      });
@@ -172,9 +172,9 @@
       // Tooltips
       var tip = d3.tip()
        .attr('class', 'd3-tip')
-       .offset([-10, 0])
+       .offset([-10,10])
        .html(function(d) {
-       return "<strong>count: </strong> "+ d.value +"<br><strong>actual:</strong><br><img src='https://rawgithub.com/vsoch/d3confusion/master/static/img/" + d.threshold + "_" + d.actual + "_" + d.direction + ".png' width=350px><br><strong>predicted:</strong><br><img src='https://rawgithub.com/vsoch/d3confusion/master/static/img/" + d.threshold + "_" + d.predicted + "_" + d.direction + ".png' width=350px>";
+       return "<div class='row' style='margin-left:14px'><strong>count: </strong> "+ d.value +"</div><div class='col-md-6'><strong>actual:</strong><br><img src='https://rawgit.com/vsoch/d3confusion/master/static/img/" + d.threshold + "_" + d.actual + "_" + d.direction + ".png' width=350px></div><div class='col-md-6'><strong>predicted:</strong><br><img src='https://rawgit.com/vsoch/d3confusion/master/static/img/" + d.threshold + "_" + d.predicted + "_" + d.direction + ".png' width=350px></div>";
        })
 
       d3.tsv("{{ url_for('static',filename='%s' % datafile) }}",
@@ -257,6 +257,6 @@
     </script>
   </body>
 <footer>
-<a href="/about">About</a>
+<a href="http://www.vbmis.com/bmi/project/confusion/about">About</a>
 </footer>
 </html>
